@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema({
     },
     verificationCode: {
         type: String,
-        default: null
-    },
+        default: ''
+    }
 }); 
 
 userSchema.pre('save', async function(next) {

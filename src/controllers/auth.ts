@@ -45,4 +45,19 @@ export const register = async(req: Request, res: Response) => {
     }
 };
 
+export const verifyEmail = async(req: Request, res: Response) => {
+    try{
+        const {email, code} = req.body;
+        const user = await User.findOne({email});
+        if (!user) return res.status(404).json({error: 'User not found'});
+        if (user.verificationCode !== code || user.verificationCode === ' ') return res.status(400).json({error:'Invalid Code'});
+        user.isVerified = true;
+        user.verificationCode = ' ';
+        await user.save();
+        res.json({message: 'Email verified successfully'});
+       } catch (error){
+        res.status(500).json({error: 'Verification failed'});
+       }
+};
+
 
