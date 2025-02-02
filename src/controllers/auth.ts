@@ -60,4 +60,22 @@ export const verifyEmail = async(req: Request, res: Response) => {
        }
 };
 
+export const login = async(req: Request, res: Response) => {
+    try {
+        const {email, password} = req.body;
+        const user = await User.findOne({email});
+        if(!user) return res.status(401).json({error: 'Invalid credentials'});
+        if(!user.isVerified) return res.status(403).json({ error: 'Email not verified'});
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({error: 'Invalid credentials'});
+
+        const token = jwt.sign(
+            { userId: user._id}, process.env.JWT_SECRET!, {expiresIn: '1h'}
+        );
+        res.json({token, username: user.username});
+    } catch (error){
+        res.status(500).json({error:'Login failed'});
+    }
+};
+
 
