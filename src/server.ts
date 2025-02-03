@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.get('/api/protected', requireAuth, (req, res)=>{
-  res.json({message:'Hello User ${req.user!.userId}'});
+  res.json({message:`Hello User ${req.user!.userId}`});
 });
 
 mongoose.connect(process.env.MONGO_URI!)
@@ -21,5 +21,5 @@ mongoose.connect(process.env.MONGO_URI!)
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, ()=>{
-  console.log('Server running on port ${PORT}');
+  console.log(`Server running on port ${PORT}`);
 });
