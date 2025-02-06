@@ -5,3 +5,4 @@ import { requireAuth } from '../middleware/auth';
 const router = express.Router();
 router.get('/stats', requireAuth, getMeetingStats);
 export default router;
+
