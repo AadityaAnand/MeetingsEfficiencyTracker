@@ -6,6 +6,7 @@ import { requireAuth } from './middleware/auth';
 import { log } from 'console';
 import meetingRoutes from './routes/meetings';
 import analyticsRoutes from './routes/analytics';
+import calendarRoutes from './routes/calendar';
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/calendar', calendarRoutes);
 app.get('/api/protected', requireAuth, (req, res)=>{
   res.json({message:`Hello User ${req.user!.userId}`});
 });

@@ -26,6 +26,8 @@ export const syncWithGoogleCaledar = async (req: Request, res: Response)=>{
                 }
             });
         }
-        
+        res.json({message: 'Meetings synced with Google Calendar'});
+    } catch(error){
+        res.status(500).json({error: 'Failed to sunc with Google Calendar'});
     }
-}
+};
