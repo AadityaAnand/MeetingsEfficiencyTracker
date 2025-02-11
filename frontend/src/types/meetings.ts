@@ -11,5 +11,5 @@ export interface Meeting{
 export interface Stats {
     totalMeetings: number;
     averageDuration: number;
-    averageRfficiency: number;
+    averageEfficiency: number;
 }
