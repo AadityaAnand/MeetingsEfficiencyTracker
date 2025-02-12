@@ -151,3 +151,19 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.meeting-card p{
+    margin: 0.25rem 0;
+    color: #666;
+}
+
+.meeting-details {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .meeting-details p {
+    margin: 0.5rem 0;
+  }
