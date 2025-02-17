@@ -17,7 +17,8 @@ const app = express();
 const httpServer = createServer(app);
 
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 };
 
@@ -65,7 +66,7 @@ app.get('/api/protected', requireAuth, (req, res) => {
 
 
 const PORT = process.env.PORT || 5001;
-
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const startServer = async () => {
   await connectDB();
   
